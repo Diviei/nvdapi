@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>NVDAPI</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="/static/vulnerabilities/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="/static/vulnerabilities/css/agency.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/static/vulnerabilities/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="page-top" class="index">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">NVDAPI</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#gettingstarted">Getting started</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#about">About</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="intro-text">
+                <div class="intro-lead-in">Welcome To NVDAPI!</div>
+                <div class="intro-heading"></div>
+                <a href="#gettingstarted" class="page-scroll btn btn-xl">Getting started</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Services Section -->
+    <section id="gettingstarted">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">Getting started</h2>
+                    <h3 class="section-subheading text-muted"></h3>
+                </div>
+            </div>
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-list fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">CVE Listing</h4>
+                    <p class="text-muted">You have a method to <a href="/vulnerabilities" target="_blank">list vulnerabilities with pagination</a> and access <a href="/vulnerabilities/CVE-2002-0001" target="_blank">certain cve detail.</a></p>
+                </div>
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-filter fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">Filters</h4>
+                    <p class="text-muted">Filter vulnerability list by <a href="/vulnerabilities?vendor=Microsoft" target="_blank">vendor</a>, <a href="/vulnerabilities?product=Internet Explorer" target="_blank">product name</a> or <a href="/vulnerabilities?product=Internet Explorer&version=6" target="_blank">version.</a></p>
+                </div>
+                <div class="col-md-4">
+                    <span class="fa-stack fa-4x">
+                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-search fa-stack-1x fa-inverse"></i>
+                    </span>
+                    <h4 class="service-heading">CVE Search</h4>
+                    <p class="text-muted">If that were not enough there is a <a href="/vulnerabilities?search=Microsoft Internet Explorer 6">human friendly search.</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="about" class="bg-light-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading">About NVDAPI</h2>
+                    <h3 class="section-subheading text-muted">NVDAPI is a resource you can use to find those vulnerabilities you are interested to.</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    &nbsp;
+                </div>
+                <div class="col-sm-4">
+                    <div class="team-member">
+                        <img src="/static/vulnerabilities/img/team/538346.jpg" class="img-responsive img-circle" alt="" style="width:239px;">
+                        <h4>Diviei</h4>
+                        <p class="text-muted">Full Stack Developer</p>
+                        <ul class="list-inline social-buttons">
+                            <li>
+                                <a href="https://twitter.com/Diviei"><i class="fa fa-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/Diviei"><i class="fa fa-github"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    &nbsp;
+                </div>
+            </div>
+            <div class="row hide">
+                <div class="col-lg-8 col-lg-offset-2 text-center">
+                    <p class="large text-muted"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <span class="copyright">Copyright &copy; NVDAPI {% now "Y" %}</span>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline social-buttons">
+                        <li><a><i class="fa fa-twitter"></i></a>
+                        </li>
+                        <li><a><i class="fa fa-github"></i></a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <ul class="list-inline quicklinks">
+                        <li><a href="#">Privacy Policy</a>
+                        </li>
+                        <li><a href="#">Terms of Use</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="/static/vulnerabilities/js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/static/vulnerabilities/js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="/static/vulnerabilities/js/classie.js"></script>
+    <script src="/static/vulnerabilities/js/cbpAnimatedHeader.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="/static/vulnerabilities/js/jqBootstrapValidation.js"></script>
+    <script src="/static/vulnerabilities/js/contact_me.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="/static/vulnerabilities/js/agency.js"></script>
+
+</body>
+
+</html>
