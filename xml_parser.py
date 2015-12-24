@@ -110,9 +110,7 @@ def process_entry(entry):
 		VulnerabilitySource.objects.get_or_create(vulnerability=vuln, url=url)
 
 	print vuln
-
-
-for i in range(14,16):
-	e = xml.etree.ElementTree.parse('nvdcve-2.0-20%s.xml' % format(i,'02')).getroot()
-	for entry in e:
-		process_entry(entry)
+# for i in range(14,16):
+# 	e = xml.etree.ElementTree.parse('nvdcve-2.0-20%s.xml' % format(i,'02')).getroot()
+# 	for entry in e:
+# 		process_entry(entry)
