@@ -51,3 +51,5 @@ class Vulnerability(models.Model):
 class VulnerabilitySource(models.Model):
 	vulnerability = models.ForeignKey(Vulnerability)
 	url = models.URLField(max_length=500)
+
+import signals
