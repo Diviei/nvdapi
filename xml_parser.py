@@ -84,6 +84,18 @@ def process_entry(entry):
 							"integrity_impact":integrity_impact,
 							"availability_impact":availability_impact})
 
+	if not created:
+		vuln.modified_on = modified_on
+		vuln.description = summary
+		vuln.score = score
+		vuln.access_vector = access_vector
+		vuln.access_complexity = access_complexity
+		vuln.authentication = authentication
+		vuln.confidentiality_impact = confidentiality_impact
+		vuln.integrity_impact = integrity_impact
+		vuln.availability_impact = availability_impact
+		vuln.save()
+
 	#Process CPEs
 	for cpe in cpes:
 		aux = cpe.replace("cpe:/","").split(":")
