@@ -11,6 +11,13 @@ from vulnerabilities.models import *
 import xml.etree.ElementTree
 import datetime
 from django.utils import timezone
+import twitter
+from django.conf import settings
+
+api = twitter.Api(consumer_key = settings.TWITTER_CONSUMER_KEY,
+                    consumer_secret = settings.TWITTER_CONSUMER_SECRET,
+                    access_token_key = settings.TWITTER_ACCESS_TOKEN,
+					access_token_secret = settings.TWITTER_ACCESS_TOKEN_SECRET)
 
 def get_cve(entry):
 	return entry.attrib.get("id")
@@ -84,6 +91,8 @@ def process_entry(entry):
 							"integrity_impact":integrity_impact,
 							"availability_impact":availability_impact})
 
+	count_before = vuln.product_version.count()
+
 	#Process CPEs
 	for cpe in cpes:
 		aux = cpe.replace("cpe:/","").split(":")
@@ -104,6 +113,19 @@ def process_entry(entry):
 		except Exception, e:
 			product_version = ProductVersion.objects.get(product=product, version=version)
 		vuln.product_version.add(product_version)
+
+	count_after = vuln.product_version.count()
+	if count_after > count_before:
+		products = [x.product.name for x in vuln.product_version.all()]
+		products = list(set(products))
+		link = "https://web.nvd.nist.gov/view/vuln/detail?vulnId=%s" % vuln.cve
+
+		tweet = []
+		tweet.append(vuln.cve)
+		tweet.append("(%s)" % ', '.join(products))
+		tweet.append(link)
+		tweet = " ".join(tweet)
+		status = api.PostUpdate(tweet)
 
 	#Process references
 	for url in references:
