@@ -107,53 +107,28 @@ def process_entry(entry):
         vuln.save()
         print "UPDATED %s" % vuln.cve
 
-    product_version_added = 0
+    def clean_cpe(string):
+        return string.replace("_"," ").replace("-","")
 
     #Process CPEs
     for cpe in cpes:
         aux = cpe.replace("cpe:/","").split(":")
-        
-        try:
-            product, created = Product.objects.get_or_create(vendor=aux[1].replace("_"," "), 
-                            name=aux[2].replace("_"," "), 
-                            defaults={"type":aux[0], })
-        except Exception, e:
-            continue
 
         try:
             version = aux[3]
-        except Exception, e:
-            version = ""
-        try:
-            product_version, created = ProductVersion.objects.get_or_create(product=product, version=version)
-            if created:
-                product_version_added = product_version_added + 1
-        except Exception, e:
-            print e
-            product_version = ProductVersion.objects.get(product=product, version=version)
-        vuln.product_version.add(product_version)
+        except IndexError:
+            version = None
 
-    if product_version_added > 0:
-        products = [x.product.name for x in vuln.product_version.all()]
-        products = list(set(products))
-        link = "https://web.nvd.nist.gov/view/vuln/detail?vulnId=%s" % vuln.cve
-
-        tweet = []
-        tweet.append(vuln.cve)
-        tweet.append("(%s)" % ', '.join(products))
-        tweet.append(link)
-        tweet = " ".join(tweet)
         try:
-            status = api.PostUpdate(tweet)
+            product, created = Product.objects.get_or_create(cpe=cpe, defaults={
+                            "vendor":clean_cpe(aux[1]),
+                            "name":clean_cpe(aux[2]),
+                            "type":clean_cpe(aux[0]),
+                            "version":version
+                            })
+            vuln.product.add(product)
         except:
-            products = [x.product.name for x in vuln.product_version.all()]
-            products = products[0]
-            tweet = []
-            tweet.append(vuln.cve)
-            tweet.append("(%s)" % ', '.join(products))
-            tweet.append(link)
-            tweet = " ".join(tweet)
-            status = api.PostUpdate(tweet)
+            continue
 
     #Process references
     for url in references:
