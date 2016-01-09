@@ -14,6 +14,7 @@ class Product(models.Model):
 class ProductVersion(models.Model):
 	product = models.ForeignKey(Product)
 	version = models.CharField(max_length=50, blank=True)
+	cpe = models.CharField(max_length=255, unique=True)
 
 	class Meta:
 		unique_together = ("product","version")
