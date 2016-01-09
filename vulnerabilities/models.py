@@ -4,23 +4,11 @@ class Product(models.Model):
 	type = models.CharField(max_length=1)
 	vendor = models.CharField(max_length=100)
 	name = models.CharField(max_length=100)
-
-	class Meta:
-		unique_together = ("vendor","name")
-
-	def __str__(self):
-		return "%s %s" % (self.vendor, self.name)
-
-class ProductVersion(models.Model):
-	product = models.ForeignKey(Product)
 	version = models.CharField(max_length=50, blank=True)
 	cpe = models.CharField(max_length=255, unique=True)
 
-	class Meta:
-		unique_together = ("product","version")
-
 	def __str__(self):
-		return "%s %s" % (self.product, self.version)
+		return "%s %s %s" % (self.vendor, self.name, self.version)
 
 	def get_full_name(self):
 		return str(self)
@@ -37,7 +25,7 @@ class Vulnerability(models.Model):
 	integrity_impact = models.CharField(max_length=20, default="NONE", null=True)
 	availability_impact = models.CharField(max_length=20, default="NONE", null=True)
 	access_vector = models.CharField(max_length=20, default="NONE", null=True)
-	product_version = models.ManyToManyField(ProductVersion)
+	product = models.ManyToManyField(Product)
 	score = models.FloatField(default=0)
 
 	def __str__(self):
