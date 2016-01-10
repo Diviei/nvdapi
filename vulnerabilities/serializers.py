@@ -19,16 +19,10 @@ class UnixEpochDateField(serializers.DateTimeField):
 class ProductSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = Product
-
-class ProductVersionSerializer(serializers.ModelSerializer):
-	vendor = serializers.CharField(source='product.vendor', read_only=True)
-	name = serializers.CharField(source='product.name', read_only=True)
-	class Meta:
-		model = ProductVersion
-		exclude = ('id','product')
+		exclude = ("id","type")
 
 class VulnerabilitySerializer(serializers.ModelSerializer):
-	product_version = ProductVersionSerializer(many=True)
+	product = ProductSerializer(many=True)
 	references = serializers.StringRelatedField(many=True)
 	released_on = UnixEpochDateField(read_only=True)
 	modified_on = UnixEpochDateField(read_only=True)

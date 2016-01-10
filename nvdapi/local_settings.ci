@@ -4,3 +4,9 @@ TWITTER_CONSUMER_KEY = "AUX1"
 TWITTER_CONSUMER_SECRET = "AUX12"
 TWITTER_ACCESS_TOKEN = "AUX13"
 TWITTER_ACCESS_TOKEN_SECRET = "AUX14"
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
+    },
+}

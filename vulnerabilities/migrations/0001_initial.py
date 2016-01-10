@@ -15,55 +15,36 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('type', models.CharField(max_length=1)),
-                ('vendor', models.CharField(max_length=50)),
-                ('name', models.CharField(unique=True, max_length=50)),
+                ('vendor', models.CharField(max_length=100)),
+                ('name', models.CharField(max_length=100)),
+                ('version', models.CharField(max_length=50, blank=True)),
+                ('cpe', models.CharField(unique=True, max_length=255)),
             ],
-            options={
-            },
-            bases=(models.Model,),
-        ),
-        migrations.CreateModel(
-            name='ProductVersion',
-            fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('version', models.CharField(max_length=25)),
-                ('product', models.ForeignKey(to='vulnerabilities.Product')),
-            ],
-            options={
-            },
-            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='Vulnerability',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('cve', models.CharField(unique=True, max_length=50)),
-                ('released_on', models.DateField(auto_now_add=True)),
+                ('released_on', models.DateTimeField()),
+                ('modified_on', models.DateTimeField(null=True, blank=True)),
                 ('description', models.TextField()),
-                ('cvss', models.CharField(max_length=20, blank=True)),
-                ('product_version', models.ManyToManyField(to='vulnerabilities.ProductVersion')),
+                ('access_complexity', models.CharField(default=b'MEDIUM', max_length=20, null=True)),
+                ('authentication', models.CharField(default=b'NONE', max_length=20, null=True)),
+                ('confidentiality_impact', models.CharField(default=b'NONE', max_length=20, null=True)),
+                ('integrity_impact', models.CharField(default=b'NONE', max_length=20, null=True)),
+                ('availability_impact', models.CharField(default=b'NONE', max_length=20, null=True)),
+                ('access_vector', models.CharField(default=b'NONE', max_length=20, null=True)),
+                ('score', models.FloatField(default=0)),
+                ('product', models.ManyToManyField(to='vulnerabilities.Product')),
             ],
-            options={
-            },
-            bases=(models.Model,),
         ),
         migrations.CreateModel(
             name='VulnerabilitySource',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('url', models.URLField()),
+                ('url', models.URLField(max_length=500)),
                 ('vulnerability', models.ForeignKey(to='vulnerabilities.Vulnerability')),
             ],
-            options={
-            },
-            bases=(models.Model,),
-        ),
-        migrations.AlterUniqueTogether(
-            name='productversion',
-            unique_together=set([('product', 'version')]),
-        ),
-        migrations.AlterUniqueTogether(
-            name='product',
-            unique_together=set([('vendor', 'name')]),
         ),
     ]

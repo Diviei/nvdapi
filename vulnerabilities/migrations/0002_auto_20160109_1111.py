@@ -7,13 +7,13 @@ from django.db import models, migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('vulnerabilities', '0009_auto_20151207_1119'),
+        ('vulnerabilities', '0001_initial'),
     ]
 
     operations = [
-        migrations.AddField(
-            model_name='vulnerability',
-            name='score',
-            field=models.IntegerField(default=0),
+        migrations.AlterField(
+            model_name='product',
+            name='version',
+            field=models.CharField(max_length=50, null=True, blank=True),
         ),
     ]
