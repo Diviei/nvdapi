@@ -2,7 +2,6 @@
 import os
 import sys
 import time
-from nvd_parser import NVD_PARSER
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "nvdapi.settings")
 import django
 django.setup()
