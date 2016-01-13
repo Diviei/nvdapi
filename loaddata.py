@@ -8,8 +8,8 @@ django.setup()
 from xml_parser import *
 from subprocess import call
 
-range_from = 2014
-range_to = 2015
+range_from = 2002
+range_to = 2016
 
 for i in range(range_from, range_to+1):
 	os.system("wget -O /tmp/aux.zip http://static.nvd.nist.gov/feeds/xml/cve/nvdcve-2.0-%i.xml.zip" % i)
