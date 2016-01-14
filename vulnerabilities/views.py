@@ -29,21 +29,25 @@ class VulnerabilityViewSet(viewsets.GenericViewSet, mixins.ListModelMixin,
     paginate_by = 10
     serializer_class = VulnerabilitySerializer
     pagination_class = VulnerabilityCursorPagination
-    filter_backends = (VulnerabilitySearch,)
+    # filter_backends = (VulnerabilitySearch,)
 
     def get_queryset(self):
         queryset = Vulnerability.objects.all()
 
         product = self.request.QUERY_PARAMS.get('product', None)
         if product is not None:
-            queryset = queryset.filter(product_version__product__name__iexact=product)
+            queryset = queryset.filter(product__name__iexact=product)
 
         vendor = self.request.QUERY_PARAMS.get('vendor', None)
         if vendor is not None:
-            queryset = queryset.filter(product_version__product__vendor__iexact=vendor)
+            queryset = queryset.filter(product__vendor__iexact=vendor)
 
         version = self.request.QUERY_PARAMS.get('version', None)
         if version is not None:
-            queryset = queryset.filter(product_version__version__istartswith=version)
+            queryset = queryset.filter(product__version__istartswith=version)
+
+        cpe = self.request.QUERY_PARAMS.get('cpe', None)
+        if cpe is not None:
+            cpe = queryset.filter(product__version__iexact=cpe)
 
         return queryset
