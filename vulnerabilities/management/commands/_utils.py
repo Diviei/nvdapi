@@ -2,21 +2,13 @@
 import os
 import sys
 import time
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "nvdapi.settings")
-import django
-django.setup()
+
 from vulnerabilities.models import *
 
 import xml.etree.ElementTree
 import datetime
 from django.utils import timezone
 import twitter
-from django.conf import settings
-
-api = twitter.Api(consumer_key = settings.TWITTER_CONSUMER_KEY,
-                    consumer_secret = settings.TWITTER_CONSUMER_SECRET,
-                    access_token_key = settings.TWITTER_ACCESS_TOKEN,
-                    access_token_secret = settings.TWITTER_ACCESS_TOKEN_SECRET)
 
 def get_cve(entry):
     return entry.attrib.get("id")
