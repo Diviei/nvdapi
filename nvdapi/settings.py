@@ -119,6 +119,12 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'nvdapi/templates').replace('\\','/'),
 )
 
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
+    },
+}
+
 try:
     from local_settings import *
 except ImportError:

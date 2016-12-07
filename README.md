@@ -1,6 +1,6 @@
 
 
-# NVDAPI ![NVDAPI Status](https://codeship.com/projects/de82d210-8acd-0133-0e97-7246c649b408/status?branch=master)
+# NVDAPI
 
 NVDAPI is a JSON REST API project to share the list of vulnerabilities of the [National Vulnerability Database]
 
@@ -19,6 +19,17 @@ cd nvdapi
 virtualenv venv
 source venv/bin/activate
 pip install -r requirements.txt
+```
+
+Create a file called `local_settings.py` inside nvdapi folder (where settings.py is) and add your SECRET_KEY
+
+```python
+SECRET_KEY = "whatever"
+```
+
+And now run the migrations
+
+```sh
 python manage.py migrate
 ```
 
