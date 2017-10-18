@@ -34,19 +34,19 @@ class VulnerabilityViewSet(viewsets.GenericViewSet, mixins.ListModelMixin,
     def get_queryset(self):
         queryset = Vulnerability.objects.all()
 
-        product = self.request.QUERY_PARAMS.get('product', None)
+        product = self.request.query_params.get('product', None)
         if product is not None:
             queryset = queryset.filter(product__name__iexact=product)
 
-        vendor = self.request.QUERY_PARAMS.get('vendor', None)
+        vendor = self.request.query_params.get('vendor', None)
         if vendor is not None:
             queryset = queryset.filter(product__vendor__iexact=vendor)
 
-        version = self.request.QUERY_PARAMS.get('version', None)
+        version = self.request.query_params.get('version', None)
         if version is not None:
             queryset = queryset.filter(product__version__istartswith=version)
 
-        cpe = self.request.QUERY_PARAMS.get('cpe', None)
+        cpe = self.request.query_params.get('cpe', None)
         if cpe is not None:
             cpe = queryset.filter(product__version__iexact=cpe)
 
