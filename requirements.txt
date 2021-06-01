@@ -16,5 +16,5 @@ pytz==2015.7
 redis==2.10.5
 requests==2.12.3
 static3==0.5.1
-urllib3==1.19.1
+urllib3==1.26.5
 wheel==0.29.0
