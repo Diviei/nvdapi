@@ -2,7 +2,7 @@ amqp==1.4.8
 anyjson==0.3.3
 BeautifulSoup==3.2.1
 billiard==3.3.0.22
-celery==3.1.19
+celery==5.2.2
 click==3.3
 dj-database-url==0.3.0
 dj-static==0.0.6
